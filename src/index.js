@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+// import async from 'async';
+// import mysql from 'mysql';
+// var mysql = require('mysql');
+
+
+// const connection = mysql.createConnection({
+//     host: "studentpoll.database.windows.net",
+//     user: "ajacques",
+//     password: "Legolas01!",
+//     database: "studentPollDatabase"
+// });
+// connection.connect((err) => {
+//   if (err) throw err;
+//   console.log('Connected!');
+// });
+
 
 const list = [
-  {
-    id: 1,
-    name: 'John Lennon',
-    votes: 0
-  },
-  {
-    id: 2,
-    name: 'Paul McCartney',
-    votes: 0
-  },
-  {
-    id: 3,
-    name: 'George Harrison',
-    votes: 0
-  },
-  {
-    id: 4,
-    name: 'Ringo Starr',
-    votes: 0
-  }
-];
+{ CityID: 1, CityName: 'Liverpool', Votes: 2 },
+{ CityID: 2, CityName: 'Leeds', Votes: 0 },
+{ CityID: 3, CityName: 'Nottingham', Votes: 0 },
+{ CityID: 4, CityName: 'Birmingham', Votes: 0 },
+{ CityID: 5, CityName: 'Manchester', Votes: 0 },
+{ CityID: 6, CityName: 'Newcastle', Votes: 0 },
+{ CityID: 7, CityName: 'Sheffield', Votes: 0 } ];
 
 class App extends Component {
   state = {
@@ -36,9 +38,9 @@ class App extends Component {
 
   handleEvent = memberId => {
     const updatedList = this.state.members.map(member => {
-      if (member.id === memberId) {
+      if (member.CityID === memberId) {
         return Object.assign({}, member, {
-          votes: member.votes + 1
+          Votes: member.Votes + 1
         });
       } else {
         return member;
@@ -52,7 +54,8 @@ class App extends Component {
 
   render() {
     return this.state.members.map(member => (
-      <Beatle key={member.id} id={member.id} name={member.name} votes={member.votes} onVote={this.handleEvent} />
+
+      <Beatle key={member.CityID} id={member.CityID} name={member.CityName} votes={member.Votes} onVote={this.handleEvent} />
     ));
   }
 }
@@ -75,4 +78,4 @@ export default App;
   
 
   ReactDOM.render(<App />, document.getElementById('root'));
-  
+
